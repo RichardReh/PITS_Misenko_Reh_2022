@@ -6,7 +6,6 @@ const {JsonDB} = require('node-json-db')
 const {Config} = require('node-json-db/dist/lib/JsonDBConfig') 
 const qrcode = require('qrcode');
 const path = require('path');
-//hallo es klappt
 
 const app = express()
 
@@ -16,9 +15,9 @@ app.use(express.urlencoded({ extended: false}))
 
 const db = new JsonDB(new Config('NutzerDatenBank', true, false, '/'))
 
-//app.get('/', (req, res) => {
-//  res.sendFile(path.join(__dirname, '\index.html'))
-//})
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '\index.html'))
+})
 
 
 app.get('/register',(req,res)=> {
@@ -110,7 +109,7 @@ app.post('/validate', (req, res) => {
 })
 
 
-const port = 3001
+const port = 3002
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
