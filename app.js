@@ -4,9 +4,8 @@ const uuid = require('uuid');
 const bcrypt =require('bcrypt')
 const {JsonDB} = require('node-json-db')
 const {Config} = require('node-json-db/dist/lib/JsonDBConfig') 
-const qrcode = require('qrcode');
+//const qrcode = require('qrcode');
 const path = require('path');
-//hallo es klappt
 
 const app = express()
 
@@ -110,7 +109,7 @@ app.post('/validate', (req, res) => {
 })
 
 
-const port = 3001
+const port = 3002
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
