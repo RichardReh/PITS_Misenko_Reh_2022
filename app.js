@@ -6,6 +6,7 @@ const {JsonDB} = require('node-json-db')
 const {Config} = require('node-json-db/dist/lib/JsonDBConfig') 
 const qrcode = require('qrcode');
 const path = require('path');
+//hallo es klappt
 
 const app = express()
 
