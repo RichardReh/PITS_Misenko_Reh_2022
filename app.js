@@ -19,9 +19,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '\index.html'))
 })
 
-app.get('/verify',(req,res)=> {
-  res.render('verify.ejs')
-})
 
 app.get('/register',(req, res)=> {
     res.render('register.ejs')
@@ -31,6 +28,9 @@ app.get('/login',(req, res)=> {
     res.render('login.ejs')
 })
 
+app.get('/verify',(req, res)=>{
+  res.render('verify.ejs')
+})
 
 //Nutzerregistrierung und temp secret
 app.post('/register', async (req, res) => {
@@ -39,7 +39,7 @@ app.post('/register', async (req, res) => {
   const password = await bcrypt.hash(req.body.password, 10)
 
   try {
-    const path = `/user/${id}`
+    const path = `/user/${name}`
     const temp_secret = speakeasy.generateSecret().base32
     db.push(path, { id, name, password, temp_secret })
     res.json(temp_secret)
@@ -55,11 +55,11 @@ app.post('/login', async (req, res)=>{
 })
 
 // Token verifizieren und das secret permanent machen
-app.post('/verify', (req, res) => {
-  const {token, id} = req.body 
-  
+app.post('/verify', async (req, res) => {
+const {token, name} = req.body 
+
   try{
-    const path = `/user/${id}`
+    const path = `/user/${name}`
     const user = db.getData(path)
     
 
@@ -72,7 +72,7 @@ app.post('/verify', (req, res) => {
       
 
     if (verified) {
-      db.push(path, {id: id, name: user.name, password: user.password, secret: user.temp_secret})
+      db.push(path, {id: user.id, name: user.name, password: user.password, secret: user.temp_secret})
       res.json({verified: true})
     } else{
         res.json({ verified: false})
