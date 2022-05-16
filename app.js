@@ -6,6 +6,7 @@ const {JsonDB} = require('node-json-db')
 const {Config} = require('node-json-db/dist/lib/JsonDBConfig') 
 //const qrcode = require('qrcode');
 const path = require('path');
+const { response } = require('express');
 
 const app = express()
 
@@ -49,9 +50,26 @@ app.post('/register', async (req, res) => {
   }
 })
 
+
 app.post('/login', async (req, res)=>{
     const name = req.body.name
     const password = req.body.password
+    const path = `/user/${name}`
+    const user = db.getData(path)
+    
+
+    bcrypt.compare(password, user.password, function(err, myresponse){
+      if(err){
+        throw err
+      }
+      
+      if(myresponse){
+         return res.json({success: true, message : 'password matched, hat geklappt'})
+      } else {
+         return res.json({success: false, message : 'passwort falsch'})
+      }
+    })
+
 })
 
 // Token verifizieren und das secret permanent machen
