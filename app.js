@@ -31,9 +31,6 @@ app.get('/login',(req, res)=> {
     res.render('login.ejs')
 })
 
-app.get('/verify',(req, res)=>{
-  res.render('verify.ejs')
-})
 
 //Nutzerregistrierung und temp secret
 app.post('/register', async (req, res) => {
