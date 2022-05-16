@@ -4,7 +4,7 @@ const uuid = require('uuid');
 const bcrypt =require('bcrypt')
 const {JsonDB} = require('node-json-db')
 const {Config} = require('node-json-db/dist/lib/JsonDBConfig') 
-//const qrcode = require('qrcode');
+const qrcode = require('qrcode');
 const path = require('path');
 
 const app = express()
@@ -38,7 +38,7 @@ app.post('/register', async (req, res) => {
     const path = `/user/${id}`
     const temp_secret = speakeasy.generateSecret().base32
     db.push(path, { id, name, password, temp_secret })
-    res.redirect('/login')
+    res.json(temp_secret)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Fehler beim generieren des secrets'}) 
@@ -108,7 +108,6 @@ app.post('/validate', (req, res) => {
   }
 })
 
-//jojo
 const port = 3002
 
 app.listen(port, () => {
