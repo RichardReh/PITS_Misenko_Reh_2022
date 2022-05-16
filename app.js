@@ -4,7 +4,7 @@ const uuid = require('uuid');
 const bcrypt =require('bcrypt')
 const {JsonDB} = require('node-json-db')
 const {Config} = require('node-json-db/dist/lib/JsonDBConfig') 
-const qrcode = require('qrcode');
+//const qrcode = require('qrcode');
 const path = require('path');
 
 const app = express()
@@ -23,12 +23,16 @@ app.get('/verify',(req,res)=> {
   res.render('verify.ejs')
 })
 
-app.get('/register',(req,res)=> {
+app.get('/register',(req, res)=> {
     res.render('register.ejs')
 })
 
-app.get('/login',(req,res)=> {
+app.get('/login',(req, res)=> {
     res.render('login.ejs')
+})
+
+app.get('/verify',(req, res)=>{
+  res.render('verify.ejs')
 })
 
 //Nutzerregistrierung und temp secret
