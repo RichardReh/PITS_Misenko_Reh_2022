@@ -38,7 +38,7 @@ app.post('/register', async (req, res) => {
     const path = `/user/${id}`
     const temp_secret = speakeasy.generateSecret().base32
     db.push(path, { id, name, password, temp_secret })
-    res.redirect('/login')
+    res.json(temp_secret)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Fehler beim generieren des secrets'}) 
@@ -108,7 +108,7 @@ app.post('/validate', (req, res) => {
   }
 })
 
-//jojo
+
 const port = 3002
 
 app.listen(port, () => {
