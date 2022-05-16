@@ -19,6 +19,9 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '\index.html'))
 })
 
+app.get('/verify',(req,res)=> {
+  res.render('verify.ejs')
+})
 
 app.get('/register',(req,res)=> {
     res.render('register.ejs')

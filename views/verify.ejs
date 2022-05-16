@@ -1,0 +1,15 @@
+<h1>Verifizieren</h1>
+<form action="/verify" method="POST">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name"
+        required>
+    </div>
+    <div>
+        <label for="password">Token</label>
+        <input type="password" id="token"
+        name="token" required>
+    </div>
+    <button type="submit">Verifizieren</button>    
+</form>
+<a href="/login">Login</a>
