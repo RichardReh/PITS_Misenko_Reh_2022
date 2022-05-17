@@ -6,7 +6,7 @@ const {JsonDB} = require('node-json-db')
 const {Config} = require('node-json-db/dist/lib/JsonDBConfig') 
 //const qrcode = require('qrcode');
 const path = require('path');
-const { response } = require('express');
+//const { response } = require('express');
 
 const app = express()
 
@@ -50,11 +50,13 @@ app.post('/register', async (req, res) => {
   }
 })
 
+var globalvariable
 
 app.post('/login', async (req, res)=>{
     const name = req.body.name
     const password = req.body.password
     const path = `/user/${name}`
+    globalvariable = path
     const user = db.getData(path)
     
 
@@ -70,7 +72,6 @@ app.post('/login', async (req, res)=>{
           res.json({success: false, message : 'passwort falsch'})
       }
     })
-
 })
 
 // Token verifizieren und das secret permanent machen
@@ -104,10 +105,12 @@ const {token, name} = req.body
 
 // bereits bestätigte Token validieren
 app.post('/validate', (req, res) => {
-  const {token, id} = req.body 
-
+  const {token} = req.body 
+  
   try{
-    const path = `/user/${id}`
+    
+    const path = globalvariable
+    console.log(globalvariable)
     const user = db.getData(path)
     
 
