@@ -64,9 +64,10 @@ app.post('/login', async (req, res)=>{
       }
       
       if(myresponse){
-         return res.json({success: true, message : 'password matched, hat geklappt'})
+        res.render('validate.ejs')
+        
       } else {
-         return res.json({success: false, message : 'passwort falsch'})
+          res.json({success: false, message : 'passwort falsch'})
       }
     })
 
