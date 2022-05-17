@@ -58,8 +58,8 @@ app.post('/login', async (req, res)=>{
     const path = `/user/${name}`
     globalvariable = path
     const user = db.getData(path)
-    
 
+    
     bcrypt.compare(password, user.password, function(err, myresponse){
       if(err){
         throw err
