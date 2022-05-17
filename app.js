@@ -56,8 +56,8 @@ app.post('/login', async (req, res)=>{
     const password = req.body.password
     const path = `/user/${name}`
     const user = db.getData(path)
-    
 
+    
     bcrypt.compare(password, user.password, function(err, myresponse){
       if(err){
         throw err
@@ -105,7 +105,7 @@ const {token, name} = req.body
 // bereits bestätigte Token validieren
 app.post('/validate', (req, res) => {
   const {token, id} = req.body 
-
+  
   try{
     const path = `/user/${id}`
     const user = db.getData(path)
