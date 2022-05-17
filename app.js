@@ -112,8 +112,6 @@ app.post('/validate', (req, res) => {
     const path = globalvariable
     console.log(globalvariable)
     const user = db.getData(path)
-    
-
     const secret = user.secret
   
 
