@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: false}))
 const db = new JsonDB(new Config('NutzerDatenBank', true, false, '/'))
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '\index.html'))
+  res.sendFile(path.join(__dirname, '\index.html'))
 })
 
 
@@ -122,7 +122,7 @@ app.post('/validate', (req, res) => {
       
 
     if (tokenValidates) {
-        res.json({ validated: true })
+      res.sendFile(__dirname + '/index.html')
     } else{
         res.json({ validated: false})
     }
