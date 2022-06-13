@@ -63,7 +63,14 @@ app.post('/login', async (req, res)=>{
     globalvariable = path
 
     
-    const user = db.getData(path)
+    try{
+      var testvariable = db.getData(path)
+    }catch(error){
+      res.json('Account nicht vorhanden')
+    }
+    
+
+    const user = testvariable
     
 
     bcrypt.compare(password, user.password, function(err, myresponse){
