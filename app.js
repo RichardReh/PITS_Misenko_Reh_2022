@@ -21,6 +21,10 @@ const db = new JsonDB(new Config('NutzerDatenBank', true, false, '/'))
 //  res.sendFile(path.join(__dirname, '\index.html'))
 //})
 
+app.get('/index.html',(req, res) => {
+  res.status(401).send({ message: 'Unauthorized'}) 
+})
+
 app.get('/register',(req, res)=> {
     res.render('register.ejs')
 })
@@ -57,6 +61,8 @@ app.post('/login', async (req, res)=>{
     const password = req.body.password
     const path = `/user/${name}`
     globalvariable = path
+
+    
     const user = db.getData(path)
     
 
