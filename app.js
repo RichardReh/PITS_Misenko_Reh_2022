@@ -6,7 +6,8 @@ const {JsonDB} = require('node-json-db')
 const {Config} = require('node-json-db/dist/lib/JsonDBConfig') 
 //const qrcode = require('qrcode');
 const path = require('path');
-//const { response } = require('express');
+
+
 
 const app = express()
 
@@ -16,10 +17,9 @@ app.use(express.urlencoded({ extended: false}))
 
 const db = new JsonDB(new Config('NutzerDatenBank', true, false, '/'))
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '\index.html'))
-})
-
+//app.get('/', (req, res) => {
+//  res.sendFile(path.join(__dirname, '\index.html'))
+//})
 
 app.get('/register',(req, res)=> {
     res.render('register.ejs')
@@ -58,8 +58,8 @@ app.post('/login', async (req, res)=>{
     const path = `/user/${name}`
     globalvariable = path
     const user = db.getData(path)
-
     
+
     bcrypt.compare(password, user.password, function(err, myresponse){
       if(err){
         throw err
@@ -112,6 +112,8 @@ app.post('/validate', (req, res) => {
     const path = globalvariable
     console.log(globalvariable)
     const user = db.getData(path)
+    
+
     const secret = user.secret
   
 
@@ -122,7 +124,7 @@ app.post('/validate', (req, res) => {
       
 
     if (tokenValidates) {
-        res.json({ validated: true })
+        res.sendFile(__dirname + '/index.html')
     } else{
         res.json({ validated: false})
     }
