@@ -125,6 +125,7 @@ app.post('/validate', (req, res) => {
 
     if (tokenValidates) {
         res.sendFile(__dirname + '/index.html')
+      
     } else{
         res.json({ validated: false})
     }
