@@ -69,8 +69,12 @@ app.post('/login', async (req, res)=>{
       res.json('Account nicht vorhanden')
     }
     
+    var user
 
-    const user = testvariable
+    if(testvariable != undefined){
+      user = testvariable
+    
+
     
 
     bcrypt.compare(password, user.password, function(err, myresponse){
@@ -85,6 +89,7 @@ app.post('/login', async (req, res)=>{
           res.json({success: false, message : 'passwort falsch'})
       }
     })
+   }
 })
 
 // Token verifizieren und das secret permanent machen
