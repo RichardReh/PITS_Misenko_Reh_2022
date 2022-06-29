@@ -66,7 +66,7 @@ app.post('/login', async (req, res)=>{
     try{
       var testvariable = db.getData(path)
     }catch(error){
-      res.json('Account nicht vorhanden')
+      res.json('Nutzername oder Passwort ist falsch')
     }
     
     var user
@@ -86,7 +86,7 @@ app.post('/login', async (req, res)=>{
         res.render('validate.ejs')
         
       } else {
-          res.json({success: false, message : 'passwort falsch'})
+          res.json({success: false, message : 'Nutzername oder Passwort ist falsch'})
       }
     })
    }
